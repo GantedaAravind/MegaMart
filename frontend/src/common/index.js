@@ -1,4 +1,4 @@
-const backendDomain = "http://localhost:9000";
+const backendDomain = "https://megamartapi.onrender.com";
 
 const SummaryApi = {
   signUp: {
