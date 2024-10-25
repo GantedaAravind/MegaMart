@@ -22,12 +22,16 @@ async function useSignInController(req, res) {
       throw new Error("Invalid Password....🙄");
     }
 
-    const token_data = {
-      _id: user._id,
-      email: user.email,
-      name: user.name,
-    };
     
+    const token = createToken(user._id.toString(), user.email, "7d");
+        res.clearCookie(COOKIE_NAME, {
+            path: "/",
+            httpOnly: true,
+            sameSite: "none",
+            signed: true,
+            secure: true, // Set to true only in production
+        });
+
     const expires = new Date();
     expires.setDate(expires.getDate() + 7);
 
