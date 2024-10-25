@@ -11,6 +11,8 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 app.use(cookieParser())
+app.use(morgan("combined")); // Use "combined" for detailed logs or "dev" for concise output
+
 
 app.use(express.urlencoded({ limit: "5mb", extended: true }));
 
