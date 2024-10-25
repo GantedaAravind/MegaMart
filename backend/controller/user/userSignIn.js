@@ -23,8 +23,8 @@ async function useSignInController(req, res) {
     }
 
     
-    const token = createToken(user._id.toString(), user.email, "7d");
-        res.clearCookie(COOKIE_NAME, {
+    const token = jwt.createToken(user._id.toString(), user.email, "7d");
+        res.clearCookie("tokem", {
             path: "/",
             httpOnly: true,
             sameSite: "none",
