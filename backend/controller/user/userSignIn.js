@@ -32,7 +32,7 @@ async function useSignInController(req, res) {
     });    
 
     return res
-            .cookie(COOKIE_NAME, token, {
+            .cookie("token", token, {
             path: "/", // Default path
             expires,
             httpOnly: true, // Prevents client-side access via JavaScript
