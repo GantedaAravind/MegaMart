@@ -44,7 +44,7 @@ const AdminEditProduct = (props) => {
     const file = event.target.files[0];
 
     const uploadImageCloudanary = await uploadImage(file);
-    console.log("upload image", uploadImageCloudanary.url);
+    // console.log("upload image", uploadImageCloudanary.url);
     setData((prev) => {
       return {
         ...prev,

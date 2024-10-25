@@ -30,9 +30,6 @@ function SignUp() {
     }
   };
 
-  const handleVerify = async () => {
-    console.log(verifycode);
-  };
 
   const navigate = useNavigate();
   const handleOnChange = (event) => {
@@ -58,7 +55,7 @@ function SignUp() {
   const handleUploadPic = async (event) => {
     const file = event.target.files[0];
     const imagePic = await imageToBase64(file);
-    console.log(imagePic);
+    // console.log(imagePic);
     setData((prev) => {
       return { ...prev, profilePic: imagePic };
     });
@@ -80,7 +77,7 @@ function SignUp() {
           body: JSON.stringify(data),
         });
         const res_data = await res.json();
-        console.log(res_data);
+        // console.log(res_data);
         if (res_data.success) {
           toast.success(res_data.message);
           navigate("/login");
@@ -102,7 +99,7 @@ function SignUp() {
     setSignupLoading(true);
     playSound();
     try {
-      console.log("UserEmail: ", data.email);
+      // console.log("UserEmail: ", data.email);
       if (data.password === data.confirmPassword) {
         const fetchResponse = await fetch(SummaryApi.sendEmail.url, {
           method: "post",

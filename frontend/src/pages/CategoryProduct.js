@@ -69,9 +69,9 @@ const CategoryProduct = () => {
     } else {
       setData((prev) => prev.sort((a, b) => b.sellingPrice - a.sellingPrice));
     }
-    console.log(value);
+    // console.log(value);
   };
-  console.log(sortBy);
+  // console.log(sortBy);
 
   useEffect(() => {
     // fetchData();

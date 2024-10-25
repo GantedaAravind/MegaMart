@@ -11,7 +11,7 @@ const ChangeUserRole = (props) => {
   const [userRole, setUserRole] = useState(role);
 
   const handleOnChangeSelect = (event) => {
-    console.log(event.target.value);
+    // console.log(event.target.value);
     setUserRole(event.target.value);
   };
 
