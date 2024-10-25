@@ -22,34 +22,32 @@ async function useSignInController(req, res) {
       throw new Error("Invalid Password....🙄");
     }
 
-    
-    const token = jwt.createToken(user._id.toString(), user.email, "7d");
-        res.clearCookie("tokem", {
-            path: "/",
-            httpOnly: true,
-            sameSite: "none",
-            signed: true,
-            secure: true, // Set to true only in production
-        });
+    // Create JWT token
+    const token = jwt.sign(
+      { _id: user._id, email: user.email }, // payload
+      process.env.TOKEN_SECRET_KEY,         // secret key
+      { expiresIn: "7d" }                   // expiration
+    );
 
     const expires = new Date();
     expires.setDate(expires.getDate() + 7);
 
-    return res
-            .cookie("token", token, {
-            path: "/", // Default path
-            expires ,
-            httpOnly: true, // Prevents client-side access via JavaScript
-            sameSite: "none", // Required for cross-origin cookies
-            signed: true,
-            secure: true,
-        })
-    .status(200).json({
-      success: true,
-      error: false,
-      message: "Login Successfully...🤩",
-      data: token,
-    });
+    // Set token in cookies
+    res
+      .cookie("token", token, {
+        path: "/",             // Default path for cookie
+        expires,               // Set expiration date
+        httpOnly: true,        // Prevents client-side access
+        sameSite: "None",      // Required for cross-origin cookies
+        secure: process.env.NODE_ENV === "production", // Secure only in production
+        signed: true,          // Requires cookie-parser with secret
+      })
+      .status(200).json({
+        success: true,
+        error: false,
+        message: "Login Successfully...🤩",
+        data: token,
+      });
   } catch (err) {
     res.status(400).json({
       message: err.message || err,
