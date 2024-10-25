@@ -23,11 +23,9 @@ async function useSignInController(req, res) {
     }
 
     // Create JWT token
-    const token = jwt.sign(
-      { _id: user._id, email: user.email }, // payload
-      process.env.TOKEN_SECRET_KEY,         // secret key
-      { expiresIn: "7d" }                   // expiration
-    );
+    const token = await jwt.sign(token_data, process.env.TOKEN_SECRET_KEY, {
+      expiresIn: "3d",
+    });
 
     const expires = new Date();
     expires.setDate(expires.getDate() + 7);
