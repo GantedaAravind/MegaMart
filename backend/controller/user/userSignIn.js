@@ -30,13 +30,17 @@ async function useSignInController(req, res) {
     const token = jwt.sign(token_data, process.env.TOKEN_SECRET_KEY, {
       expiresIn: "3d", // Token expires in 3 days
     });    
-    const token_options = {
-      httpOnly: true,
-      secure: true, // Only secure in production
-      sameSite: "none", // Ensure "None" is lowercase
-    };
 
-    res.cookie("token", token, token_options).status(200).json({
+    return res
+            .cookie(COOKIE_NAME, token, {
+            path: "/", // Default path
+            expires,
+            httpOnly: true, // Prevents client-side access via JavaScript
+            sameSite: "none", // Required for cross-origin cookies
+            signed: true,
+            secure: true,
+        })
+    .status(200).json({
       success: true,
       error: false,
       message: "Login Successfully...🤩",
