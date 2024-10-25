@@ -10,7 +10,6 @@ async function authToken(req,res,next){
                 success:false,
             })
         }
-
         jwt.verify(token,process.env.TOKEN_SECRET_KEY,(err,decoded)=>{
             if(err){
                 throw new Error("Error Occured In Authentication ....😣");
