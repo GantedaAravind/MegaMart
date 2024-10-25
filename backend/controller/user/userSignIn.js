@@ -38,8 +38,8 @@ async function useSignInController(req, res) {
         path: "/",             // Default path for cookie
         expires,               // Set expiration date
         httpOnly: true,        // Prevents client-side access
-        sameSite: "None",      // Required for cross-origin cookies
-        secure: process.env.NODE_ENV === "production", // Secure only in production
+        sameSite: "none",      // Required for cross-origin cookies
+        secure: true, // Secure only in production
         signed: true,          // Requires cookie-parser with secret
       })
       .status(200).json({
