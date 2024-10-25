@@ -23,7 +23,7 @@ async function useSignInController(req, res) {
     }
 
     // Create JWT token
-    const token = await jwt.sign(token_data, process.env.TOKEN_SECRET_KEY, {
+    const token = await jwt.sign({ _id: user._id, email: user.email }, process.env.TOKEN_SECRET_KEY, {
       expiresIn: "3d",
     });
 
