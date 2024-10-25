@@ -27,14 +27,14 @@ async function useSignInController(req, res) {
       email: user.email,
       name: user.name,
     };
-    const token = jwt.sign(token_data, process.env.TOKEN_SECRET_KEY, {
-      expiresIn: "3d", // Token expires in 3 days
-    });    
+    
+    const expires = new Date();
+    expires.setDate(expires.getDate() + 7);
 
     return res
             .cookie("token", token, {
             path: "/", // Default path
-            expires,
+            expires ,
             httpOnly: true, // Prevents client-side access via JavaScript
             sameSite: "none", // Required for cross-origin cookies
             signed: true,
