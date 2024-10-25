@@ -1,0 +1,22 @@
+.customShadow {
+  box-shadow: 5px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.usetable {
+  @apply bg-white;
+}
+
+.usetable th {
+  @apply border text-base font-medium;
+}
+
+.usetable td {
+  @apply border text-base text-center;
+}
+
+/* scroll hidden bar */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+

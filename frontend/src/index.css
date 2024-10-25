@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{
+    --background-color :rgb(236, 243, 241);
+    --text-color:black;
+}
+
+[data-theme="dark"]{
+    --background-color :rgb(35, 37, 37);
+    --text-color:white;
+}
+body{
+   background-color: var(--background-color);
+   color:var(--text-color);
+   @apply transition-all duration-1000;
+}
