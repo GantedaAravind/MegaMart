@@ -30,7 +30,6 @@ function SignUp() {
     }
   };
 
-
   const navigate = useNavigate();
   const handleOnChange = (event) => {
     if (event.target.name === "email") {
@@ -53,12 +52,21 @@ function SignUp() {
   };
 
   const handleUploadPic = async (event) => {
-    const file = event.target.files[0];
-    const imagePic = await imageToBase64(file);
-    // console.log(imagePic);
-    setData((prev) => {
-      return { ...prev, profilePic: imagePic };
-    });
+    try {
+      const file = event.target.files[0];
+
+      // Check if the file size is more than 300KB (300 * 1024 bytes)
+      if (file.size > 300 * 1024) {
+        throw new Error("File size exceeds 300KB limit.");
+      }
+
+      const imagePic = await imageToBase64(file);
+      setData((prev) => {
+        return { ...prev, profilePic: imagePic };
+      });
+    } catch (err) {
+      toast.error(err.message);
+    }
   };
 
   const [verifyLoading, setVerifyLoading] = useState(false);

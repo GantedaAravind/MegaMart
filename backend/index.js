@@ -11,12 +11,16 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 app.use(cookieParser())
+
+app.use(express.urlencoded({ limit: "5mb", extended: true }));
+
 app.use(cors(
   {
     origin:process.env.FRONTEND_URL,
     credentials:true
   }
 ));
+
 
 app.use("/api", router);
 
