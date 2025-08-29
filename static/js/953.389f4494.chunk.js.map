@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/953.389f4494.chunk.js","mappings":"sJAQA,QANA,WACE,OACEA,EAAAA,EAAAA,KAAA,OAAAC,SAAK,kBAET,C","sources":["pages/ForgotPassword.js"],"sourcesContent":["import React from 'react'\n\nfunction ForgotPassword() {\n  return (\n    <div>ForgotPassword</div>\n  )\n}\n\nexport default ForgotPassword;"],"names":["_jsx","children"],"sourceRoot":""}
